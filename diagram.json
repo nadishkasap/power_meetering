@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "author": "Benjamin Cabé",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": -308.4,
+      "left": -222.36,
+      "attrs": { "fastTLS": "1" }
+    },
+    { "type": "wokwi-ssd1306", "id": "oled1", "top": -59.65, "left": -14.02, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -284.76,
+      "left": -386.43,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -298.68,
+      "left": -342.21,
+      "attrs": { "color": "green" }
+    },
+    { "type": "wokwi-mpu6050", "id": "imu1", "top": -2.55, "left": -126.46, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.1", "oled1:GND", "black", [ "h0" ] ],
+    [ "oled1:VIN", "esp:3V3", "red", [ "v0" ] ],
+    [ "led1:C", "esp:GND.2", "black", [ "v0" ] ],
+    [ "led1:A", "esp:D32", "green", [ "v0" ] ],
+    [ "led2:C", "esp:GND.2", "black", [ "v0" ] ],
+    [ "led2:A", "esp:D33", "green", [ "v0" ] ],
+    [ "imu1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "imu1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "esp:D26", "imu1:SCL", "yellow", [ "h-46", "v180.77", "h192.07" ] ],
+    [ "esp:D26", "oled1:CLK", "yellow", [ "h-46", "v130", "h284.18" ] ],
+    [ "esp:D25", "imu1:SDA", "blue", [ "h-68", "v202.61", "h203.5" ] ],
+    [ "esp:D25", "oled1:DATA", "blue", [ "h-68", "v148", "h298.47" ] ]
+  ],
+  "dependencies": {}
+}
